@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Prank": {
+      "title": "Prank",
+      "description": "A prank idea cataloged by users.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the prank."
+        },
+        "content": {
+          "type": "string",
+          "description": "The rich text content of the prank."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags associated with the prank."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["NOVAS", "VOU_FAZER", "BOA", "DESCARTADAS"],
+          "description": "The current column/status of the prank."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the prank was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the prank was last updated."
+        },
+        "movedToDiscardedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the prank was moved to the discarded column."
+        },
+        "isArchived": {
+          "type": "boolean",
+          "description": "Whether the prank is archived."
+        }
+      },
+      "required": ["title", "content", "status", "createdAt", "updatedAt", "isArchived"]
+    }
+  },
+  "firestore": {
+    "/pranks/{prankId}": {
+      "schema": {
+        "$ref": "#/entities/Prank"
+      },
+      "description": "Collection of pranks."
+    }
+  }
+}
